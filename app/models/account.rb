@@ -6,7 +6,7 @@ class Account < ApplicationRecord
     foreign_key: :reviewer_id, dependent: :destroy
   has_one_attached :image
 
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :activation_token
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_CARDID_REGEX = /[0-9]{9}/.freeze
@@ -15,6 +15,7 @@ class Account < ApplicationRecord
   before_save :downcase_email
   before_create :set_default_image
 
+  before_create :create_activation_digest
   has_secure_password
 
   validates :email, presence: true,
@@ -37,7 +38,6 @@ class Account < ApplicationRecord
   enum gender: {male: 0, female: 1}
   enum status: {block: 0, unactive: 1, active: 2}
 
-
   def self.digest string
     if cost = ActiveModel::SecurePassword.min_cost
       BCrypt::Engine::MIN_COST
@@ -55,10 +55,11 @@ class Account < ApplicationRecord
     SecureRandom.urlsafe_base64
   end
 
-  def authenticated? remember_token
-    return false unless remember_digest
+  def authenticated? attribute, token
+    digest = send "#{attribute}_digest"
+    return false unless digest
 
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+    BCrypt::Password.new(digest).is_password? token
   end
 
   def remember
@@ -68,6 +69,10 @@ class Account < ApplicationRecord
 
   def forget
     update_column(:remember_digest, nil)
+  end
+
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
   end
 
   private
@@ -80,5 +85,10 @@ class Account < ApplicationRecord
     image.attach(io: File.open(Rails.root.join("app", "assets", "images",
                                                "gallery", "team1.png")),
       filename: "team1.png", content_type: "image/png")
+  end
+
+  def create_activation_digest
+    self.activation_token = Account.new_token
+    self.activation_digest = Account.digest(activation_token)
   end
 end

@@ -11,8 +11,9 @@ class AccountsController < ApplicationController
   def create
     @account = Account.new accounts_params
     if @account.save
+      @account.send_activation_email
       flash[:success] = t "controller.accounts.create.succsess"
-      log_in @account
+      flash[:info] = t "controller.accounts.create.info"
       redirect_to root_path
     else
       flash.now[:danger] = t "controller.accounts.create.danger"
@@ -70,6 +71,7 @@ class AccountsController < ApplicationController
 
   def permit_update
     return if current_account?(@account)
+
     flash[:danger] = t "error.permit"
     redirect_to root_path
   end

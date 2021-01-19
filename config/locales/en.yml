@@ -80,6 +80,10 @@ en:
     permit: "you don't have permit"
 
 
+  mailers:
+    user_mailer:
+      sub_active: "Account activation"
+
   views:
     accounts:
       new:
@@ -114,11 +118,28 @@ en:
         ask_account: Don't have an account?
         signup: "Sign up now!"
         forgot_pass: "Forgot your password?"
+
+    user_mailers:
+      title: "Health Care Service"
+      hi: "Hi "
+      content: "Welcome to the Health Care Service! Click on the link below to activate your
+        account:"
+      link_active: "Activate"
+
+    services:
+      title: "Services"
+      show:
+        title: "Detail service"
+        btn_back: "Come back"
+        btn_add: "Add to cart"
+        btn_review: "Review"
+
   controller:
     accounts:
       create:
         succsess: "Welcome to the Health care service website!"
         danger: "Signup was not successul"
+        info: "Please check your email to activate your account."
       load_account:
         error: "Not found account"
       update:
@@ -128,6 +149,11 @@ en:
       create:
         success: "Login success"
         danger: "Invalid email/password combination"
+        warning: "Account not activated. Check your email for the activation link."
+    account_activation:
+      edit:
+        success: "Account activated!"
+        danger: "Invalid activation link"
   date:
     formats:
       default: "%Y-%m-%d"

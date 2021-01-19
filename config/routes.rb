@@ -20,7 +20,25 @@ Rails.application.routes.draw do
     resources :reviews, only: :create
   end
 
+
   resources :services do
     resources :reviews, only: :create
+  end
+
+  namespace :admin do
+    get "statistics/accounts", to: "statistics#accounts"
+    get "statistics/staffs", to: "statistics#staffs"
+    get "statistics/revenue", to: "statistics#revenue"
+    get "statistics/reviews", to: "statistics#reviews"
+
+    resources :orders, only: %i(index edit)
+    resources :statistics, only: :index
+  end
+
+  namespace :staff do
+    get "/my_received_order", to: "staffs#my_received_order"
+
+    resources :work_histories, only: %i(index edit)
+    resources :staffs, only: %i(index edit show update)
   end
 end

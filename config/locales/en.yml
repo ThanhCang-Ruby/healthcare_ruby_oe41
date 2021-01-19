@@ -60,6 +60,52 @@ en:
     our_specialist: "Our specialist"
     staffs: "Staffs"
 
+  admin:
+    sidebar:
+      manage_staffs: "Manage Staffs"
+      manage_users: "Manage Users"
+      manage_majors: "Manage Majors"
+      manage_services: "Manage Services"
+      manage_orders: "Manage Orders"
+      manage_contacts: "Manage Contacts"
+      statistics: "Statistics"
+    manage_order:
+      pending: "pending"
+      approved: "approved"
+      received: "received"
+      inprogress: "inprogress"
+      finished: "finished"
+      cancel: "cancel"
+      service: "Service"
+      start_date: "Start date: "
+      end_date: "End date: "
+      title: "Manage Order"
+      status: "Status: "
+      order: "Order: "
+      address: "Address: "
+      phone_number: "Phone Number: "
+      description: "description: "
+      total: "total: "
+      order_not_found: "Order not found"
+      accept: "accept"
+      reject: "reject"
+      vnd: " VND"
+    statistic:
+      customers: "New customers"
+      staffs: "New staffs"
+      revenue: "Revenue"
+      reviews: "Reviews"
+
+  staff_page:
+    my_received_order: "My received order"
+    customer_order: "customer order"
+    work_history: "Work history"
+    confirm_finished: "Confirm finished"
+    id: "id"
+    service: "Service"
+    money: "money"
+    time: "time"
+
   activerecord:
     models:
       account : Accounts
@@ -171,3 +217,6 @@ en:
       default: "%a, %d %b %Y %H:%M:%S %z"
     am: "am"
     pm: "pm"
+  notice:
+    success: "Success"
+    error: "error"

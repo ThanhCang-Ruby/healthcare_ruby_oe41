@@ -1,5 +1,7 @@
 class Account < ApplicationRecord
   has_many :orders, dependent: :destroy
+  has_many :received_orders, class_name: Order.name,
+    foreign_key: :staff_id, dependent: :destroy
   has_one :license, dependent: :destroy
   has_many :reviews, as: :reviewable, dependent: :destroy
   has_many :rated_reviews, class_name: Review.name,
@@ -10,8 +12,6 @@ class Account < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_CARDID_REGEX = /[0-9]{9}/.freeze
   VALID_PHONENUMBER_REGEX = /[0-9]{10}/.freeze
-
-  scope :sort_by_create_at, ->{order created_at: :desc}
 
   before_save :downcase_email
   before_create :set_default_image

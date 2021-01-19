@@ -24,7 +24,7 @@ Account.create!(full_name: "full_name",
   role = Faker::Number.within(range: 0..2)
   phone_number = Faker::Number.number(digits: 10)
   status = 2
-  activated_at = Time.zone.now
+  activated_at = Faker::Date.between(from: "2020-01-01", to: "2021-01-01")
 
   Account.create!(full_name: full_name,
                email: email,
@@ -37,7 +37,7 @@ Account.create!(full_name: "full_name",
                phone_number: phone_number,
                password: password,
                password_confirmation: password,
-               activated_at: Time.zone.now)
+               activated_at: activated_at)
 end
 
 #major
@@ -76,11 +76,12 @@ accounts.each { |account|
   5.times do |n|
     account.orders.create!(
       account_name: Faker::Name.name,
-      phone_number: Faker::Number.number(digits: 10),
+      phone: Faker::Number.number(digits: 10),
       address: Faker::Address.street_address,
       description: Faker::Lorem.sentence(word_count: 10),
       status: Faker::Number.within(range: 0..4),
-      total_price: 0
+      total_price: 0,
+      created_at: Faker::Date.between(from: "2020-01-01", to: "2021-01-01")
     )
   end
 }
@@ -100,15 +101,7 @@ orders.each { |order|
       into_money: service.price * (end_date - start_date)
     )
   }
-}
-
-#work_history
-order_details = OrderDetail.all
-order_details.each { |order_detail|
-
-  order_detail.work_histories.create!(
-    note: Faker::Lorem.sentence(word_count: 10),
-  )
+  order.update_column(:total_price, order.order_details.sum(:into_money))
 }
 
 #review
@@ -120,6 +113,7 @@ accounts.each { |account|
       rate: Faker::Number.within(range: 1..5),
       reviewable_id:Faker::Number.within(range: 1..Account.count),
       reviewable_type: Account.name,
+      created_at: Faker::Date.between(from: "2020-01-01", to: "2021-01-01")
     )
   end
 }
@@ -133,6 +127,7 @@ services.each { |service|
       rate: Faker::Number.within(range: 1..5),
       reviewable_id: Faker::Number.within(range: 1..Service.count),
       reviewable_type: Service.name,
+      created_at: Faker::Date.between(from: "2020-01-01", to: "2021-01-01")
     )
   end
 }

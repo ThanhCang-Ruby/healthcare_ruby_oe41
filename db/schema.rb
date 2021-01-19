@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_01_23_165130) do
   create_table "order_details", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "order_id", null: false
     t.bigint "service_id", null: false
+    t.integer "status", default: 0
     t.date "start_date", null: false
     t.date "end_date", null: false
     t.decimal "into_money", precision: 10
@@ -125,14 +126,6 @@ ActiveRecord::Schema.define(version: 2021_01_23_165130) do
     t.index ["major_id"], name: "index_services_on_major_id"
   end
 
-  create_table "work_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "order_detail_id", null: false
-    t.text "note"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["order_detail_id"], name: "index_work_histories_on_order_detail_id"
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "licenses", "accounts"
@@ -141,5 +134,4 @@ ActiveRecord::Schema.define(version: 2021_01_23_165130) do
   add_foreign_key "order_details", "services"
   add_foreign_key "orders", "accounts"
   add_foreign_key "services", "majors"
-  add_foreign_key "work_histories", "order_details"
 end

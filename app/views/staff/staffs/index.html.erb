@@ -1,0 +1,7 @@
+<h1 class="section"><%= t "staff_page.customer_order" %></h1>
+<table class="table">
+  <% @orders.each do |order| %>
+    <%= render partial: "order", locals: {order: order} %>
+  <% end %>
+</table>
+<%= will_paginate @orders %>

@@ -62,6 +62,8 @@ vi:
   staff:
     our_staff: "Nhân viên của chúng tôi"
     our_specialist: "Chuyên Gia Của Chúng Tôi"
+    staffs: "Staffs"
+
 
   activerecord:
     models:
@@ -81,6 +83,8 @@ vi:
   error:
     one: "Thông tin của bạn mắc 1 lỗi"
     other: "Thông tin của bạn mắc %{count} lỗi"
+    permit: "bạn không có quyền"
+
 
   views:
     accounts:
@@ -101,8 +105,12 @@ vi:
         date_of_birth: "Ngày Sinh"
         avatar: "Ảnh đại diện"
         update: "Cập nhật"
-        cancel: "Huy"
-
+        cancel: "Hủy"
+      review:
+        reviews: "có %{total} đánh giá"
+        rate: "đánh giá"
+        enter_comment: "Nhập đánh giá của bạn"
+        
     sessions:
       new:
         title: "Đăng nhập"

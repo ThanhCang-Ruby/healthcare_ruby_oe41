@@ -1,5 +1,8 @@
 class AccountsController < ApplicationController
   before_action :load_account, only: %i(show edit update)
+  before_action :load_staff, only: :show_staff
+  before_action :permit_update, only: %i(edit update)
+  before_action :permit_load_info, only: :show
 
   def new
     @account = Account.new
@@ -17,7 +20,11 @@ class AccountsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    return if current_account.nil?
+
+    @review = current_account.reviews.build
+  end
 
   def edit; end
 
@@ -29,6 +36,10 @@ class AccountsController < ApplicationController
       flash.now[:danger] = t "controller.accounts.update.fail"
       render :edit
     end
+  end
+
+  def show_staff
+    @staff.per_page = Settings.account.staff.per_page
   end
 
   private
@@ -51,6 +62,27 @@ class AccountsController < ApplicationController
     return if @account = Account.find_by(id: params[:id])
 
     flash[:error] = t "controller.accounts.load_account.error"
+    redirect_to root_path
+  end
+
+  def load_staff
+    return if @staff = Account.staff.paginate(page: params[:page])
+
+    flash[:error] = t "controller.accounts.load_account.error"
+    redirect_to root_path
+  end
+
+  def permit_update
+    return if current_account?(@account)
+    
+    flash[:danger] = t "error.permit"
+    redirect_to root_path
+  end
+
+  def permit_load_info
+    return if current_account?(@account) || @account.staff?
+
+    flash[:danger] = t "error.permit"
     redirect_to root_path
   end
 end

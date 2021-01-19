@@ -20,7 +20,10 @@ class AccountsController < ApplicationController
     end
   end
 
-  def show; end
+  def show
+    @reviews = @account.reviews.paginate page: params[:page],
+                per_page: Settings.account.staff.per_page
+  end
 
   def edit; end
 
@@ -42,7 +45,8 @@ class AccountsController < ApplicationController
     params.require(:account).permit(:email, :password,
                                     :password_confirmation,
                                     :full_name, :address,
-                                    :card_id, :phone_number)
+                                    :card_id, :phone_number,
+                                    :date_of_birth)
   end
 
   def update_account_params
@@ -75,6 +79,13 @@ class AccountsController < ApplicationController
     return if current_account?(@account) || @account.staff?
 
     flash[:danger] = t "error.permit"
+    redirect_to root_path
+  end
+
+  def load_staff
+    return if @staff = Account.staff.paginate(page: params[:page])
+
+    flash[:error] = t "controller.accounts.load_account.error"
     redirect_to root_path
   end
 end

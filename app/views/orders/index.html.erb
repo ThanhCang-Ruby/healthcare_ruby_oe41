@@ -1,0 +1,42 @@
+<% provide(:title, t("views.orders.index.title")) %>
+<div class="container">
+  <div>
+    <h1><%= t "views.orders.index.heading" %></h1>
+  </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">
+          <%= t "views.orders.index.id" %>
+        </th>
+        <th scope="col">
+          <%= t "views.orders.index.detail" %>
+        </th>
+        <th scope="col">
+          <%= t "views.orders.index.status" %>
+        </th>
+        <th scope="col">
+          <%= t "views.orders.index.created_at" %>
+        </th>
+        <th scope="col">
+          <%= t "views.orders.index.btn_update" %>
+        </th>
+        <th scope="col">
+          <%= t "views.orders.index.btn_cancel" %>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <th scope="row">Order <%= order.id %></th>
+          <td><%= link_to t("views.orders.index.btn_detail"), "#", class: "btn btn-danger" %></td>
+          <td><%= order.status %></td>
+          <td><%= l(order.created_at, format: :default) %></td>
+          <td><%= link_to t("views.orders.index.btn_update"), "#", class: "btn btn-danger" %></td>
+          <td><%= link_to t("views.orders.index.btn_cancel"), "#", class: "btn btn-danger" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

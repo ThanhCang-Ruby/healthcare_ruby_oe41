@@ -22,7 +22,7 @@
       <div class="card-body">
         <h4 class="card-title"><%= service.name %></h4>
         <p class="card-text"><%= service.major.name %></p>
-        <%= link_to "See Profile", "#", class:"btn btn-primary float-right" %>
+        <%= link_to t("views.services.show.btn_add"), cart_path(:service_id => service.id),method: :post, class:"btn-link" %>
       </div>
     </div>
   </div>

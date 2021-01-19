@@ -13,7 +13,7 @@ module SessionsHelper
     if (account_id = session[:account_id])
       @current_account ||= Account.find_by id: account_id
     elsif (account_id = cookies.signed[:account_id])
-      account = Account.find_by(id: account_id)
+      accouncarts_path,t = Account.find_by(id: account_id)
       if account&.authenticated?(:remember, cookies[:remember_token])
         log_in account
         @current_account = account
@@ -39,5 +39,10 @@ module SessionsHelper
 
   def current_account? account
     account && account == current_account
+  end
+
+  def current_cart
+    session[:carts] ||= Order.new
+    @current_carts = session[:carts]
   end
 end

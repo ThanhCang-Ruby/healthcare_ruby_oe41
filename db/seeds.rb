@@ -1,3 +1,16 @@
+
+Account.create!(full_name: "full_name",
+  email: "huy25107@gmail.com",
+  address: "address",
+  date_of_birth: Time.now,
+  gender: 1,
+  card_id: "123123123",
+  role: 1,
+  status: 2,
+  phone_number: "1231231231",
+  password: "123123123",
+  password_confirmation: "123123123",
+  activated_at: Time.zone.now)
 #generate account
 30.times do |n|
   full_name = Faker::Name.name
@@ -62,6 +75,9 @@ end
 accounts.each { |account|
   5.times do |n|
     account.orders.create!(
+      account_name: Faker::Name.name,
+      phone: Faker::Number.number(digits: 10),
+      address: Faker::Address.street_address,
       description: Faker::Lorem.sentence(word_count: 10),
       status: Faker::Number.within(range: 0..4),
       total_price: 0

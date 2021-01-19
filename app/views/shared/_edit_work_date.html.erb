@@ -1,0 +1,10 @@
+<div class="action">
+  <button class="add-to-cart-detail btn-default" type="button">
+  <%= form_tag(carts_path, method: :post, remote: true) do  %>
+  <%= t "product_detail.add_to_cart" %>
+  <%= hidden_field_tag(:service_id, @service.id) %>
+  </button>
+  <%= text_field_tag(:start_date), class: "date" %>
+  <%= text_field_tag(:end_date), class: "date" %>
+  <% end %>
+</div>

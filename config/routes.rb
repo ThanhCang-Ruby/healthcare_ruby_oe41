@@ -11,8 +11,20 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
 
+  resources :orders, only: %i(index show)
+  resources :order_details, only: :index
+  resources :carts, only: %i(index show create)
+
   resources :accounts
   resources :account_activations, only: :edit
-  resources :reviews, only: %i(create destroy)
-  resources :services, only: :index
+  resources :services, only: %i(index show)
+  resources :reviews, only: :destroy
+
+  resources :accounts do
+    resources :reviews, only: :create
+  end
+
+  resources :services do
+    resources :reviews, only: :create
+  end
 end

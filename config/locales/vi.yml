@@ -93,6 +93,18 @@ vi:
     user_mailer:
       sub_active: "Kích hoạt tài khoản"
 
+  mailers:
+    user_mailer:
+      sub_active: "Kích hoạt tài khoản"
+
+  mailers:
+    user_mailer:
+      sub_active: "Kích hoạt tài khoản"
+
+  mailers:
+    user_mailer:
+      sub_active: "Kích hoạt tài khoản"
+
   views:
     accounts:
       new:
@@ -136,7 +148,25 @@ vi:
       link_active: "Kích hoạt"
 
     services:
-        title: "Dịch vụ"
+      title: "Dịch vụ"
+      show:
+        title: "Chi tiết dịch vụ"
+        btn_back: "Quay lại"
+        btn_add: "Chọn dịch vụ"
+        btn_review: "Đánh giá"
+        price: "Đơn giá"
+
+    orders:
+      index:
+        title: "Đơn dịch vụ"
+        heading: "Lịch sử sử dụng dịch vụ của bạn"
+        id: "Mã dịch vụ"
+        detail: "Chi tiết"
+        btn_detail: "Xem"
+        status: "Trạng thái"
+        created_at: "Ngày dặt"
+        btn_update: "Sửa đổi"
+        btn_cancel: "Hủy"
 
   controller:
     accounts:
@@ -159,12 +189,18 @@ vi:
       edit:
         success: "Tài khoản đã được kích hoạt"
         danger: "Đường dẫn không hợp lệ"
+    services:
+      load:
+        danger: "Không tìm thấy dịch vụ"
 
+    orders:
+      index:
+        danger: "Bạn chưa sử dụng dịch vụ nào"
   date:
     formats:
       default: "%d-%m-%Y"
   time:
     formats:
-      default: "%a, %d %b %Y %H:%M:%S %z"
+      default: "%a, %d %b %Y %H:%M:%S"
     am: sáng
     pm: chiều

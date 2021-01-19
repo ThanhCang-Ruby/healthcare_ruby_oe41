@@ -13,6 +13,8 @@ class Account < ApplicationRecord
   VALID_PHONENUMBER_REGEX = /[0-9]{10}/.freeze
 
   before_save :downcase_email
+  before_create :set_default_image
+
   has_secure_password
 
   validates :email, presence: true,
@@ -34,6 +36,7 @@ class Account < ApplicationRecord
   enum role: {customer: 0, admin: 1, staff: 2}
   enum gender: {male: 0, female: 1}
   enum status: {block: 0, unactive: 1, active: 2}
+
 
   def self.digest string
     if cost = ActiveModel::SecurePassword.min_cost
@@ -71,5 +74,11 @@ class Account < ApplicationRecord
 
   def downcase_email
     email.downcase!
+  end
+
+  def set_default_image
+    image.attach(io: File.open(Rails.root.join("app", "assets", "images",
+                                               "gallery", "team1.png")),
+      filename: "team1.png", content_type: "image/png")
   end
 end

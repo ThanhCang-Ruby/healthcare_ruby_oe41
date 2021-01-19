@@ -81,4 +81,11 @@ class AccountsController < ApplicationController
     flash[:danger] = t "error.permit"
     redirect_to root_path
   end
+
+  def load_staff
+    return if @staff = Account.staff.paginate(page: params[:page])
+
+    flash[:error] = t "controller.accounts.load_account.error"
+    redirect_to root_path
+  end
 end

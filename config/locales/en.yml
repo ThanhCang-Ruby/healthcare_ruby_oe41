@@ -78,7 +78,7 @@ en:
     one: "The form contains 1 error"
     other: "The form contains %{count} errors"
     permit: "you don't have permit"
-        
+
 
   views:
     accounts:
@@ -107,7 +107,6 @@ en:
         success: "Success"
         fail: "fail"
 
-        
     sessions:
       new:
         title: "Login"
@@ -137,4 +136,3 @@ en:
       default: "%a, %d %b %Y %H:%M:%S %z"
     am: "am"
     pm: "pm"
-

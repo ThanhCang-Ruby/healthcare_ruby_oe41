@@ -74,7 +74,7 @@ class AccountsController < ApplicationController
 
   def permit_update
     return if current_account?(@account)
-    
+
     flash[:danger] = t "error.permit"
     redirect_to root_path
   end

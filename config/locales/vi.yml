@@ -110,7 +110,7 @@ vi:
         reviews: "có %{total} đánh giá"
         rate: "đánh giá"
         enter_comment: "Nhập đánh giá của bạn"
-        
+
     sessions:
       new:
         title: "Đăng nhập"
@@ -133,3 +133,11 @@ vi:
       create:
         success: "Đăng nhập thành công"
         danger: "Tài khoản hoặc mật khẩu không đúng"
+  date:
+    formats:
+      default: "%d-%m-%Y"
+  time:
+    formats:
+      default: "%a, %d %b %Y %H:%M:%S %z"
+    am: sáng
+    pm: chiều

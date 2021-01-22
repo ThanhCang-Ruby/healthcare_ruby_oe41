@@ -1,0 +1,27 @@
+<div class="col-lg-8 col-md-12">
+  <h2>History Your Order</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Order_id</th>
+        <th scope="col">Detail</th>
+        <th scope="col">Create_at</th>
+        <th scope="col">Status</th>
+        <th scope="col">Cancle</th>
+        <th scope="col">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @current_account.orders.each do |order| %>
+        <tr>
+          <th scope="row">Order<%= order.id %></th>
+          <td><%= link_to "View", "/customers/order_details/:id" , class: " btn"  %></td>
+          <td><%= order.created_at %></td>
+          <td><%= order.status %></td>
+          <td><%= link_to "Cancel", "#", class: " btn"  %></td>
+          <td><%= link_to "Update", "#", class: " btn"  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

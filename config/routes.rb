@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :customers do
+    resources :order_details
+  end
+  namespace :customers do
+    resources :orders
+  end
   root "static_pages#home"
 
   get "/about", to: "static_pages#about"

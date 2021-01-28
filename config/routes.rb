@@ -30,9 +30,11 @@ Rails.application.routes.draw do
     get "statistics/staffs", to: "statistics#staffs"
     get "statistics/revenue", to: "statistics#revenue"
     get "statistics/reviews", to: "statistics#reviews"
+    get "account/customer", to: "accounts#index_customer"
 
     resources :orders, only: %i(index edit)
     resources :statistics, only: :index
+    resources :accounts
   end
 
   namespace :staff do

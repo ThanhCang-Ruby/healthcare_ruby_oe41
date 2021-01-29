@@ -29,4 +29,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: %i(index edit)
   end
+  resources :carts, only: %i(create index show)
+  delete "/remove_service", to: "carts#remove_service"
+  get "/remove_service", to: "carts#remove_service"
 end

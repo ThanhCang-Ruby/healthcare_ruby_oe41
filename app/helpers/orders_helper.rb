@@ -8,13 +8,13 @@ module OrdersHelper
   end
 
   def total_money order
-    @total_money = 0
+    total_money = 0
     order_details = order.order_details
-    @total_money = order_details.reduce(0) do |sum, o|
+    total_money = order_details.reduce(0) do |sum, o|
       sum + o.into_money
     end
 
-    @total_money
+    total_money
   end
 
   def count_day order_detail

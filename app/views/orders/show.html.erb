@@ -24,8 +24,8 @@
         <% @order_details.each do |order_detail| %>
         <tr>
           <td scope="row"><%= order_detail.service.name %></td>
-          <td><%= order_detail.start_date %></td>
-          <td><%= order_detail.end_date %></td>
+          <td><%= l(order_detail.start_date, format: :default) %></td>
+          <td><%= l(order_detail.end_date, format: :default) %></td>
           <td><%= order_detail.service.price %></td>
           <th scope="col"><%= count_day order_detail %></th>
           <td><%= into_money order_detail %></td>

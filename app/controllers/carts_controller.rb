@@ -16,6 +16,10 @@ class CartsController < ApplicationController
     redirect_to carts_path(:start_date =>params[:start_date],:end_date => params[:end_date])
   end
 
+  def delete
+    @carts.delete(params[:service_id])
+  end
+
   private
 
   def load_cart

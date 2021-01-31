@@ -30,11 +30,9 @@
               <input type="date" class="form-control" value=<%= @end_date %>>
               </td>
               <td class="col-sm-1 col-md-1 text-center"><strong>$<%= s.price %></strong></td>
-              <td class="col-sm-1 col-md-1 text-center"><strong><%= into_money_cart(s.price,@end_date, @start_date) %></strong></td>
+              <td class="col-sm-1 col-md-1 text-center"><strong><%= into_money_cart(s.price, @start_date, @end_date) %></strong></td>
               <td class="col-sm-1 col-md-1">
-              <button type="button" class="btn btn-danger">
-                  <span class="glyphicon glyphicon-remove"></span> Remove
-              </button></td>
+              </td>
             </tr>
             <% end %>
             <tr>

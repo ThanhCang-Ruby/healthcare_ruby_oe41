@@ -25,5 +25,5 @@ Rails.application.routes.draw do
   end
 
   resources :orders, only: %i(index show)
-  resources :carts, only: %i(create index show)
+  resources :carts, only: %i(create index show destroy)
 end

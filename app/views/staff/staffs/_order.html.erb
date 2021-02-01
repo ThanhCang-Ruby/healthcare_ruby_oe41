@@ -12,7 +12,7 @@
     <th><%= t "admin.manage_order.phone_number" %></th>
     <th><%= order.account_phone_number %></th>
     <th></th>
-  
+
   </tr>
   <tr >
     <th><%= t "admin.manage_order.description" %></th>
@@ -24,7 +24,7 @@
     <th colspan="2"><%= t "admin.manage_order.total" %></th>
     <td><b><%= order.order_details.sum(:into_money) %><%= t "admin.manage_order.vnd" %></b></td>
   </tr>
-  <% order.order_details.received.each do |order_detail| %>  
+  <% order.order_details.received.each do |order_detail| %>
     <%= render partial: "order_detail", locals: {order_detail: order_detail}%>
   <% end %>
 </tbody>
